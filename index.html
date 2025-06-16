@@ -31,10 +31,270 @@
           `<p>Welcome, ${user.email}</p>`
       }
     })
-  </script>
-</body>
-</html>
-<div id="user-info" style="display: none;">
-  <p id="user-email"></p>
-  <button onclick="signOut()">Sign Out</button>
-</div>
+import { useState } from 'react';
+import { Play, Users, MessageSquare, TrendingUp, Lightbulb, Target, Zap, Video, Mic, Clock } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+
+const Index = () => {
+  const [selectedUserType, setSelectedUserType] = useState('');
+
+  const rooms = [
+    {
+      id: 1,
+      name: "Idea Exchange",
+      description: "Share and validate your startup ideas",
+      icon: Lightbulb,
+      category: "Innovation"
+    },
+    {
+      id: 2,
+      name: "Pitch Practice",
+      description: "Perfect your pitch with real feedback",
+      icon: Target,
+      category: "Pitching"
+    },
+    {
+      id: 3,
+      name: "Growth Hacks",
+      description: "Share proven growth strategies",
+      icon: TrendingUp,
+      category: "Marketing"
+    },
+    {
+      id: 4,
+      name: "Tech Talk",
+      description: "Discuss latest technologies and tools",
+      icon: Zap,
+      category: "Technology"
+    },
+    {
+      id: 5,
+      name: "Investor Connect",
+      description: "Meet potential investors and partners",
+      icon: Users,
+      category: "Funding"
+    },
+    {
+      id: 6,
+      name: "Coffee Chat",
+      description: "Casual networking and relationship building",
+      icon: MessageSquare,
+      category: "Networking"
+    }
+  ];
+
+  const userTypes = [
+    { id: 'founder', label: 'Startup Founder', icon: Lightbulb },
+    { id: 'investor', label: 'Investor', icon: TrendingUp },
+    { id: 'developer', label: 'Developer', icon: Zap },
+    { id: 'marketer', label: 'Marketer', icon: Target },
+    { id: 'mentor', label: 'Mentor', icon: Users }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      {/* Header */}
+      <header className="border-b border-white/10 backdrop-blur-sm bg-black/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-gradient-to-r from-emerald-400 to-blue-500 rounded-lg flex items-center justify-center">
+                <Video className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-xl font-bold text-white">EntrepreneurChat</span>
+            </div>
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2 text-emerald-400">
+                <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                <span className="text-sm font-medium">24/7 Live</span>
+              </div>
+              <Button variant="outline" className="border-white/20 text-white hover:bg-white/10">
+                Sign In
+              </Button>
+              <Button className="bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-600 hover:to-blue-600">
+                Join Now
+              </Button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="mb-8">
+            <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 mb-4">
+              🚀 Connect with Entrepreneurs Worldwide
+            </Badge>
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+              Connect with
+              <span className="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent"> Entrepreneurs</span>
+              <br />24/7
+            </h1>
+            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              Join themed video rooms, connect with mentors, investors, and fellow founders. 
+              Build your network while building your business.
+            </p>
+          </div>
+
+          {/* User Type Selection */}
+          <div className="mb-12">
+            <h3 className="text-lg font-semibold text-white mb-4">I'm a...</h3>
+            <div className="flex flex-wrap justify-center gap-3">
+              {userTypes.map((type) => {
+                const Icon = type.icon;
+                return (
+                  <button
+                    key={type.id}
+                    onClick={() => setSelectedUserType(type.id)}
+                    className={`flex items-center space-x-2 px-4 py-2 rounded-full border transition-all duration-200 ${
+                      selectedUserType === type.id
+                        ? 'bg-emerald-500 border-emerald-500 text-white'
+                        : 'border-white/20 text-gray-300 hover:border-emerald-500/50 hover:text-emerald-400'
+                    }`}
+                  >
+                    <Icon className="w-4 h-4" />
+                    <span className="text-sm font-medium">{type.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <Button 
+            size="lg" 
+            className="bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-600 hover:to-blue-600 text-white px-8 py-3 text-lg"
+          >
+            <Play className="w-5 h-5 mr-2" />
+            Start Networking Now
+          </Button>
+        </div>
+      </section>
+
+      {/* Live Rooms Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">Video Rooms</h2>
+            <p className="text-gray-400 text-lg">Join conversations on topics that matter to entrepreneurs</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {rooms.map((room) => {
+              const Icon = room.icon;
+              return (
+                <Card key={room.id} className="bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 hover:scale-105 group">
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-10 h-10 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-lg flex items-center justify-center">
+                          <Icon className="w-5 h-5 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-white group-hover:text-emerald-400 transition-colors">
+                            {room.name}
+                          </h3>
+                          <Badge variant="secondary" className="bg-emerald-500/10 text-emerald-400 text-xs">
+                            {room.category}
+                          </Badge>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p className="text-gray-400 text-sm mb-4">{room.description}</p>
+
+                    <div className="flex justify-end">
+                      <Button 
+                        size="sm" 
+                        className="bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500 hover:text-white border-emerald-500/30"
+                        variant="outline"
+                      >
+                        Join Room
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-black/20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">Why Entrepreneurs Choose Us</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Clock className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2">24/7 Availability</h3>
+              <p className="text-gray-400">Connect with entrepreneurs from different time zones, any time of day.</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Users className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2">Quality Network</h3>
+              <p className="text-gray-400">Verified entrepreneurs, investors, and industry experts only.</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Zap className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2">Instant Connections</h3>
+              <p className="text-gray-400">Jump into conversations immediately with zero setup required.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Ready to Level Up Your Network?
+          </h2>
+          <p className="text-xl text-gray-300 mb-8">
+            Join thousands of entrepreneurs building the future, together.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              size="lg" 
+              className="bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-600 hover:to-blue-600 text-white px-8 py-3 text-lg"
+            >
+              <Video className="w-5 h-5 mr-2" />
+              Join Video Chat
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-white/20 text-white hover:bg-white/10 px-8 py-3 text-lg"
+            >
+              Learn More
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-white/10 py-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto text-center">
+          <p className="text-gray-400">
+            © 2024 EntrepreneurChat. Connecting visionaries worldwide.
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default Index;
