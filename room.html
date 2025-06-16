@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Room</title>
+</head>
+<body>
+  <h2 id="room-title">Room: </h2>
+  <p>Welcome! This is your live room.</p>
+
+  <script type="module">
+    import { supabase } from './script/supabase.js';
+
+    // Get room name from URL
+    const params = new URLSearchParams(window.location.search);
+    const roomName = params.get('name');
+
+    if (!roomName) {
+      alert("No room specified");
+      window.location.href = "/";
+    }
+
+    document.getElementById("room-title").textContent = `Room: ${roomName}`;
+    // You can add video logic here later
+  </script>
+</body>
+</html>
