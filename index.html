@@ -150,7 +150,18 @@
     } else {
       alert("Room not found.");
     }
+ <script>
+  function joinRoom(roomName) {
+    const roomLinks = {
+      "idea-exchange": "https://meet.jit.si/idea-exchange",
+      "pitch-practice": "https://meet.jit.si/pitch-practice",
+      "growth-hacks": "https://meet.jit.si/growth-hacks",
+      "tech-talk": "https://meet.jit.si/tech-talk"
+    };
+    window.open(roomLinks[roomName], "_blank");
   }
+</script>
+ }
 </script>
 
 </body>
