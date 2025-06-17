@@ -10,7 +10,7 @@
 
   <!-- Navbar -->
   <header class="flex justify-between items-center p-6 bg-white shadow">
-    <h1 class="text-xl font-bold text-blue-600">EntreFix<span class="text-gray-800"></span></h1>
+    <h1 class="text-xl font-bold text-blue-600">EntreFix</h1>
     <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Sign In</button>
   </header>
 
@@ -26,15 +26,14 @@
   <section class="px-6 py-12">
     <h3 class="text-2xl font-bold text-center mb-8">Jump Into Live Conversations</h3>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-      <!-- Room Cards -->
+      <!-- Room Cards with Join Buttons -->
       <div class="bg-white p-6 rounded-xl shadow">
         <div class="text-pink-600 text-3xl mb-2">💡</div>
         <h4 class="font-semibold text-lg">Idea Exchange</h4>
         <p class="text-sm text-gray-500 mt-2">Share your startup ideas and get instant feedback.</p>
         <div class="flex justify-between items-center mt-4">
           <span class="text-green-500 text-sm">24 live</span>
-          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="text-blue-600 font-semibold hover:underline">Join</a>
-
+          <button onclick="joinRoom('idea-exchange')" class="text-blue-600 font-semibold hover:underline">Join</button>
         </div>
       </div>
       <div class="bg-white p-6 rounded-xl shadow">
@@ -42,9 +41,8 @@
         <h4 class="font-semibold text-lg">Pitch Practice</h4>
         <p class="text-sm text-gray-500 mt-2">Perfect your pitch with real investors and founders.</p>
         <div class="flex justify-between items-center mt-4">
-          <span class="text-green-500 text-sm">15 live</span>
-          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="text-blue-600 font-semibold hover:underline">Join</a>
-
+          <span class="text-green-500 text-sm">10 live</span>
+          <button onclick="joinRoom('pitch-practice')" class="text-blue-600 font-semibold hover:underline">Join</button>
         </div>
       </div>
       <div class="bg-white p-6 rounded-xl shadow">
@@ -52,9 +50,8 @@
         <h4 class="font-semibold text-lg">Growth Hacks</h4>
         <p class="text-sm text-gray-500 mt-2">Proven strategies to scale your business fast.</p>
         <div class="flex justify-between items-center mt-4">
-          <span class="text-green-500 text-sm">15 live</span>
-          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="text-blue-600 font-semibold hover:underline">Join</a>
-
+          <span class="text-green-500 text-sm">6 live</span>
+          <button onclick="joinRoom('growth-hacks')" class="text-blue-600 font-semibold hover:underline">Join</button>
         </div>
       </div>
       <div class="bg-white p-6 rounded-xl shadow">
@@ -63,10 +60,16 @@
         <p class="text-sm text-gray-500 mt-2">Chat with developers and solve tech issues.</p>
         <div class="flex justify-between items-center mt-4">
           <span class="text-green-500 text-sm">18 live</span>
-          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="text-blue-600 font-semibold hover:underline">Join</a>
-
+          <button onclick="joinRoom('tech-talk')" class="text-blue-600 font-semibold hover:underline">Join</button>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Embedded Video Call Frame -->
+  <section class="px-6 pb-12 max-w-6xl mx-auto">
+    <div class="w-full h-[70vh] mt-6 border rounded-xl overflow-hidden">
+      <iframe id="videoCallFrame" src="" class="w-full h-full" allow="camera; microphone; fullscreen; display-capture"></iframe>
     </div>
   </section>
 
@@ -106,6 +109,26 @@
     <p class="text-sm text-gray-500 mt-2"> · Join Now</p>
   </section>
 
+  <!-- Contact Form -->
+  <section id="contact" class="max-w-xl mx-auto p-6">
+    <h2 class="text-xl font-bold mb-4">Contact Support</h2>
+    <form action="https://formspree.io/f/meokkvbv" method="POST" class="space-y-4">
+      <div>
+        <label class="block mb-1" for="name">Your Name:</label>
+        <input class="w-full border rounded px-3 py-2" type="text" id="name" name="name" required>
+      </div>
+      <div>
+        <label class="block mb-1" for="email">Your Email:</label>
+        <input class="w-full border rounded px-3 py-2" type="email" id="email" name="_replyto" required>
+      </div>
+      <div>
+        <label class="block mb-1" for="message">Your Message:</label>
+        <textarea class="w-full border rounded px-3 py-2" id="message" name="message" rows="5" required></textarea>
+      </div>
+      <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" type="submit">Send Message</button>
+    </form>
+  </section>
+
   <!-- Footer -->
   <footer class="bg-white text-gray-500 text-sm py-10 px-6">
     <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -115,64 +138,27 @@
       </div>
       <div>
         <h4 class="font-semibold text-gray-700 mb-2">Platform</h4>
-        <ul>
-          <li>Live Rooms</li>
-          <li>Mentor Chat</li>
-        </ul>
+        <ul><li>Live Rooms</li><li>Mentor Chat</li></ul>
       </div>
       <div>
         <h4 class="font-semibold text-gray-700 mb-2">Community</h4>
-        <ul>
-          <li>Guidelines</li>
-          <li>Success Stories</li>
-        </ul>
+        <ul><li>Guidelines</li><li>Success Stories</li></ul>
       </div>
       <div>
         <h4 class="font-semibold text-gray-700 mb-2">Support</h4>
-        <ul>
-          <li>Help Center</li>
-          <li>Privacy Policy</li>
-          <li>Terms of Service</li>
-        </ul>
+        <ul><li>Help Center</li><li>Privacy Policy</li><li>Terms of Service</li></ul>
       </div>
     </div>
     <p class="text-center mt-6 text-gray-400">© 2024 EntreFix. Built for entrepreneurs, by entrepreneurs.</p>
   </footer>
 
+  <!-- Room Join Logic -->
+  <script>
+    function joinRoom(roomName) {
+      const baseURL = "https://basilbiju.daily.co"; // TODO: Replace with your Daily.co subdomain
+      document.getElementById("videoCallFrame").src = `${baseURL}/${roomName}`;
+    }
+  </script>
+
 </body>
 </html>
-<section id="contact" style="max-width: 600px; margin: auto; padding: 2rem;">
-  <h2>Contact Support</h2>
-  <form action="https://formspree.io/f/meokkvbv" method="POST">
-    <label for="name">Your Name:</label><br>
-    <input type="text" id="name" name="name" required><br><br>
-
-    <label for="email">Your Email:</label><br>
-    <input type="email" id="email" name="_replyto" required><br><br>
-
-    <label for="message">Your Message:</label><br>
-    <textarea id="message" name="message" rows="5" required></textarea><br><br>
-
-    <button type="submit">Send Message</button>
-  </form>
-</section>
-
-<style>
-  #contact input, #contact textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 6px 0;
-    box-sizing: border-box;
-  }
-  #contact button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    cursor: pointer;
-  }
-  #contact button:hover {
-    background-color: #45a049;
-  }
-</style>
-
